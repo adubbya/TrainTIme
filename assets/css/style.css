@@ -1,0 +1,17 @@
+.jumbotron{
+    background: #bf5700;    
+} 
+
+h1,h3{
+color: #fff;    
+}
+
+.form-group{
+background: #333f;
+color: #fff;
+}
+
+.btn-primary{
+background-color: #bf5700;
+border-color: #bf5700;    
+}
