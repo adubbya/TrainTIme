@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>ChooChooMafs</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- CSS Reset Sheet -->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <!-- JQuery -->
@@ -31,15 +32,24 @@
         <!-- Current Train Schedule -->
         <div class="row">
             <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Current Train Schedule</h3>
+            <div class="card">
+                <div class="card-heading">
+                    <h3 class="card-title">Current Train Schedule</h3>
                 </div>
-                <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-4 col-sm-offset-2">
-                    </div>
-                </div>
+                <div class="card-block">
+                 <table class="table table-hover" id='train-table'>
+                    <thead>
+                        <tr>
+                        <th>Train Name</th>
+                        <th>Destination</th>
+                        <th>Frequency (min)</th>
+                        <th>Next Arrival</th>
+                        <th>Minutes Away</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                 </table>
                 </div>
             </div>
             </div>
@@ -48,29 +58,29 @@
         <!-- Add Train -->
         <div class="row">
             <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                <h3 class="panel-title">Add Train</h3>
+            <div class="card card-primary">
+                <div class="card-heading">
+                <h3 class="card-title">Add Train</h3>
                 </div>
-                <div class="panel-body">
+                <div class="card-block">
                 <form>
                     <div class="form-group">
-                    <label for="my-name">Train Name</label>
-                    <input class="form-control" id="my-name" type="text">
+                    <label for="train-name">Train Name</label>
+                    <input class="form-control" id="train-name" type="text">
                     </div>
                     <div class="form-group">
-                    <label for="my-destination">Destination</label>
-                    <input class="form-control" id="my-destination" type="text">
+                    <label for="train-destination">Destination</label>
+                    <input class="form-control" id="train-destination" type="text">
                     </div>
                     <div class="form-group">
-                    <label for="my-train-time">First Train Time (HH:mm - military time)</label>
-                    <input class="form-control" id="my-train-time" type="text">
+                    <label for="train-time">First Train Time (HH:mm - military time)</label>
+                    <input class="form-control" id="train-time" type="text">
                     </div>
                     <div class="form-group">
-                    <label for="my-train-time">First Train Time (min)</label>
-                    <input class="form-control" id="my-train-time" type="text">
+                    <label for="train-frequency">Frequency (min)</label>
+                    <input class="form-control" id="train-frequency" type="text">
                     </div>
-                        <button class="btn btn-primary" id="submit-bid" type="submit">Submit</button>
+                        <button class="btn btn-primary" id="submit-train" type="submit">Submit</button>
                 </form>
                 </div>
             </div>

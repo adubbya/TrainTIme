@@ -1,14 +1,28 @@
-.jumbotron{
-    background: #bf5700;    
-} 
-
 h1,h3{
 color: #fff;    
 }
 
-.form-group{
-background: #333f;
+.jumbotron{
+background: #bf5700;    
+} 
+
+.card{
+border-color: #333f;   
+}
+
+.card-heading{
+padding: 5px;
+background-color: #333f;   
 color: #fff;
+}
+
+.card-block{
+padding: 10px;    
+}
+
+.train-table{
+background: #333f;
+color: #fff;        
 }
 
 .btn-primary{
