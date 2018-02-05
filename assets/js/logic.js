@@ -31,9 +31,9 @@ var trainsRef = firebase.database();
 // Initial Variables, figure out if i need these at some point
 var trainName = "";
 var trainDestination = "";
-var trainFreq = 0;
-var trainArrival= "00:00";
-var trainMinAway=0; 
+var trainFrequency = 0;
+var trainArrival = "00:00";
+var trainMinAway = 0;
 
 // DONE Add Train Data with submit button
 $("#submit-train").on("click", function (event) {
@@ -53,10 +53,16 @@ $("#submit-train").on("click", function (event) {
         arrival: trainArrival,
         frequency: trainFrequency
     });
+
+      // Clear train
+  $("#employee-name-input").val("");
+  $("#role-input").val("");
+  $("#start-input").val("");
+  $("#rate-input").val("");
 });
 
 // firebase snapshot, console log and drop into DOM table
-trainsRef.ref().on("child_added", function(childSnapshot) {
+trainsRef.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val());
     console.log(childSnapshot.val().name);
     console.log(childSnapshot.val().destination);
@@ -64,14 +70,14 @@ trainsRef.ref().on("child_added", function(childSnapshot) {
     console.log(childSnapshot.val().frequency);
 
     // maths not done yet, some placeholders, table test    
-$("#train-table > tbody").append("<tr><td>" + childSnapshot.val().name + "</td><td>" + childSnapshot.val().destination
-+ "</td><td>" + childSnapshot.val().frequency + "</td><td>" + childSnapshot.val().arrival + "</td><td>" + childSnapshot.val().frequency + "</td><td>");
+    $("#train-table > tbody").append("<tr><td>" + childSnapshot.val().name + "</td><td>" + childSnapshot.val().destination
+        + "</td><td>" + childSnapshot.val().frequency + "</td><td>" + childSnapshot.val().arrival + "</td><td>" + childSnapshot.val().frequency + "</td><td>");
 
-  // error tracking
-}, function(errorObject) {
+    // error tracking
+}, function (errorObject) {
     console.log("Errors handled: " + errorObject.code);
 });
 
 
-  
+
 
