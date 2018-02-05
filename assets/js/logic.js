@@ -33,7 +33,7 @@ var trainName = "";
 var trainDestination = "";
 var trainFreq = 5;
 var trainArrival= "12:00";
-var startMinAway=""; 
+var trainMinAway=13; 
 
 // DONE Add Train Data with submit button
 $("#submit-train").on("click", function (event) {
@@ -43,7 +43,7 @@ $("#submit-train").on("click", function (event) {
     var trainName = $("#train-name").val().trim();
     var trainDest = $("#train-destination").val().trim();
     // horrible mutant, but atleasts its moment js
-    var trainArrival = moment($("#train-time").val().trim(), "hh:mm").format();
+    var trainArrival = moment($("#train-arrival").val().trim(), "hh:mm").format();
     var trainFrequency = $("#train-frequency").val().trim();
 
     //push train user input data to firebase
