@@ -26,36 +26,14 @@ firebase.initializeApp(config);
 
 // Firebase directories
 // top-level database ref
-var database = firebase.database();
-// /Trains ref
-var trainsRef = database.ref("/Trains");
-// /connections and state change ref
-var connectionsRef = database.ref("/connections");
-var connectedRef = database.ref(".info/connected");
+var trainsRef = firebase.database();
 
 // Initial Variables, figure out if i need these at some point
-var startTrainName = "";
-var startTrainDestination = "";
-var startTrainFreq = 5;
-var startArrivalTime= "12:00";
-var startMinAway="";
-
-// Add/Remove user on based on state change
-connectedRef.on("value", function (snap) {
-
-    if (snap.val()) {
-
-        var con = connectionsRef.push(true);
-
-        con.onDisconnect().remove();
-    }
-});
-
-// console log #of connections,
-connectionsRef.on("value", function (snap) {
-    console.log(snap.numChildren());
-});
-
+var trainName = "";
+var trainDestination = "";
+var trainFreq = 5;
+var trainArrival= "12:00";
+var startMinAway=""; 
 
 // DONE Add Train Data with submit button
 $("#submit-train").on("click", function (event) {
@@ -65,25 +43,35 @@ $("#submit-train").on("click", function (event) {
     var trainName = $("#train-name").val().trim();
     var trainDest = $("#train-destination").val().trim();
     // horrible mutant, but atleasts its moment js
-    var trainTime = moment($("#train-time").val().trim(), "hh:mm").format();
-    var trainFreq = $("#train-frequency").val().trim();
+    var trainArrival = moment($("#train-time").val().trim(), "hh:mm").format();
+    var trainFrequency = $("#train-frequency").val().trim();
 
-    // DONE new train temp object
-    var newTrain = {
+    //push train user input data to firebase
+    trainsRef.ref().push({
         name: trainName,
-        dest: trainDest,
-        time: trainTime,
-        freq: trainFreq
-    };
-
-    trainsRef.push(newTrain);
-    // object to database yay!
-    console.log(newTrain.name);
-    console.log(newTrain.dest);
-    console.log(newTrain.time);
-    console.log(newTrain.freq);
-
+        destination: trainDest,
+        arrival: trainArrival,
+        frequency: trainFrequency
+    });
 });
-  
+
+// firebase snapshot, console log and drop into DOM table
+trainsRef.ref().on("child_added", function(childSnapshot) {
+    console.log(childSnapshot.val());
+    console.log(childSnapshot.val().name);
+    console.log(childSnapshot.val().destination);
+    console.log(childSnapshot.val().arrival);
+    console.log(childSnapshot.val().frequency);
+
+    // maths not done yet, some placeholders, table test    
+$("#train-table > tbody").append("<tr><td>" + childSnapshot.val().name + "</td><td>" + childSnapshot.val().destination
++ "</td><td>" + childSnapshot.val().frequency + "</td><td>" + childSnapshot.val().arrival + "</td><td>" + childSnapshot.val().frequency + "</td><td>");
+
+  // error tracking
+}, function(errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+});
+
+
   
 
