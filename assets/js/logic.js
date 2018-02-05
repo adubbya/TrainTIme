@@ -31,9 +31,9 @@ var trainsRef = firebase.database();
 // Initial Variables, figure out if i need these at some point
 var trainName = "";
 var trainDestination = "";
-var trainFreq = 5;
-var trainArrival= "12:00";
-var trainMinAway=13; 
+var trainFreq = 0;
+var trainArrival= "00:00";
+var trainMinAway=0; 
 
 // DONE Add Train Data with submit button
 $("#submit-train").on("click", function (event) {
@@ -41,7 +41,7 @@ $("#submit-train").on("click", function (event) {
 
     // DONE Train data from user input
     var trainName = $("#train-name").val().trim();
-    var trainDest = $("#train-destination").val().trim();
+    var trainDestination = $("#train-destination").val().trim();
     // horrible mutant, but atleasts its moment js
     var trainArrival = moment($("#train-arrival").val().trim(), "hh:mm").format();
     var trainFrequency = $("#train-frequency").val().trim();
@@ -49,7 +49,7 @@ $("#submit-train").on("click", function (event) {
     //push train user input data to firebase
     trainsRef.ref().push({
         name: trainName,
-        destination: trainDest,
+        destination: trainDestination,
         arrival: trainArrival,
         frequency: trainFrequency
     });
